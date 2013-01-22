@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90093ACE-5CB7-4186-96FD-B4CAE84F7B62}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CompiledDomainModel.Demo.FeedReader</RootNamespace>
+    <AssemblyName>CompiledDomainModel.Demo.FeedReader</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Sitecore.Kernel, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CompiledDomainModel\Binaries\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="layouts\FeedReader\FeedCollectionSublayout.ascx.cs">
+      <DependentUpon>FeedCollectionSublayout.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedCollectionSublayout.ascx.designer.cs">
+      <DependentUpon>FeedCollectionSublayout.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedItemSublayout.ascx.cs">
+      <DependentUpon>FeedItemSublayout.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedItemSublayout.ascx.designer.cs">
+      <DependentUpon>FeedItemSublayout.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedReaderLayout.aspx.cs">
+      <DependentUpon>FeedReaderLayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedReaderLayout.aspx.designer.cs">
+      <DependentUpon>FeedReaderLayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedReaderSublayoutBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedSublayout.ascx.cs">
+      <DependentUpon>FeedSublayout.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\FeedReader\FeedSublayout.ascx.designer.cs">
+      <DependentUpon>FeedSublayout.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDomainModel\Comment.cs" />
+    <Compile Include="MyDomainModel\Feed.cs" />
+    <Compile Include="MyDomainModel\FeedCollection.cs" />
+    <Compile Include="MyDomainModel\FeedItem.cs" />
+    <Compile Include="MyDomainModel\MyDomainModel.gen.cs" />
+    <Compile Include="MyDomainModel\Wcf\SitecoreService.cs" />
+    <Compile Include="MyDomainModel\Wcf\SitecoreService.svc.cs">
+      <DependentUpon>SitecoreService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompiledDomainModel\CompiledDomainModel.csproj">
+      <Project>{438805A5-EE12-43FD-8F11-8C55F8E0B3A7}</Project>
+      <Name>CompiledDomainModel</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="layouts\FeedReader\css\FeedReader.css" />
+    <Content Include="layouts\FeedReader\FeedCollectionSublayout.ascx" />
+    <Content Include="layouts\FeedReader\FeedItemSublayout.ascx" />
+    <Content Include="layouts\FeedReader\FeedReaderLayout.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="layouts\FeedReader\FeedSublayout.ascx" />
+    <Content Include="MyDomainModel\Wcf\SitecoreService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>30969</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

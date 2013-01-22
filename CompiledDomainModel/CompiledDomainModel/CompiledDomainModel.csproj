@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{438805A5-EE12-43FD-8F11-8C55F8E0B3A7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CompiledDomainModel</RootNamespace>
+    <AssemblyName>CompiledDomainModel</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Sitecore.Kernel, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Binaries\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\DomainObjectAttribute.cs" />
+    <Compile Include="Attributes\DomainObjectFieldAttribute.cs" />
+    <Compile Include="Attributes\FixedPathAttribute.cs" />
+    <Compile Include="Attributes\VersionAttribute.cs" />
+    <Compile Include="Core\IItemWrapper.cs" />
+    <Compile Include="Dom\BaseSet.cs" />
+    <Compile Include="Dom\ContributingTemplateInSet.cs" />
+    <Compile Include="Dom\DomainModelSettings.cs" />
+    <Compile Include="Dom\DomainObjectSet.cs" />
+    <Compile Include="Dom\FixedPathSet.cs" />
+    <Compile Include="Dom\FixedTreeLocation.cs" />
+    <Compile Include="Dom\FixedTreeLocationBase.cs" />
+    <Compile Include="Dom\MultipleInheritanceException.cs" />
+    <Compile Include="Dom\RelativeFixedTreeLocation.cs" />
+    <Compile Include="Dom\TemplateField.cs" />
+    <Compile Include="Dom\TemplateInSet.cs" />
+    <Compile Include="Dom\TemplateInSetBase.cs" />
+    <Compile Include="Dom\TemplateSection.cs" />
+    <Compile Include="GutterRenderers\CdmConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.cs">
+      <DependentUpon>CodeGenerator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.designer.cs">
+      <DependentUpon>CodeGenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.cs">
+      <DependentUpon>DomainModelGenerator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.designer.cs">
+      <DependentUpon>DomainModelGenerator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.cs">
+      <DependentUpon>Diagram.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.designer.cs">
+      <DependentUpon>Diagram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.cs">
+      <DependentUpon>DomainObjectsDiagram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.designer.cs">
+      <DependentUpon>DomainObjectsDiagram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.cs">
+      <DependentUpon>FixedPaths.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.designer.cs">
+      <DependentUpon>FixedPaths.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.cs">
+      <DependentUpon>FixedPathsDiagram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.designer.cs">
+      <DependentUpon>FixedPathsDiagram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Validator.aspx.cs">
+      <DependentUpon>Validator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\CompiledDomainModel\Validator.aspx.designer.cs">
+      <DependentUpon>Validator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ConfigurationUtil.cs" />
+    <Compile Include="Utils\DomUtil.cs" />
+    <Compile Include="Validation\IValidateDomainModelProcessor.cs" />
+    <Compile Include="Validation\ValidateDomainModel.cs" />
+    <Compile Include="Validation\ValidateDomainModelOnStartup.cs" />
+    <Compile Include="Validation\ValidateDomainModelPipelineArgs.cs" />
+    <Compile Include="Validation\ValidationUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Binaries\Sitecore.Kernel.dll" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\CustomGenerators\WcfServiceGenerator.ascx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\CustomGenerators\SqlViewsGenerator.ascx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\default.htm" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\author_mail.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_all.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_code_generator.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_domainobjectset.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_menu.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_fixedpaths.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_fixedpathset.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_domainobjects.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_settings.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_silverlight_feedreader.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_consistent.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_inconsistent.png" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx" />
+    <Content Include="sitecore modules\Shell\CompiledDomainModel\Validator.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Config\Include\CompiledDomainModel.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>34047</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

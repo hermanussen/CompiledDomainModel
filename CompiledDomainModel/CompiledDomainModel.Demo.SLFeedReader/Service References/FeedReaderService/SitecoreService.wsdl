@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SitecoreService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyDomainModel.Wcf" />
+      <xsd:import schemaLocation="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SitecoreService_GetItemById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemById" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetItemById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetItemByPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemByPath" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetItemByPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemByPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetRootItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRootItem" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetRootItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRootItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetItemsByIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByIds" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetItemsByIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectItems" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectSingleItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectSingleItem" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectSingleItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectSingleItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectItemsUsingXPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectItemsUsingXPath" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectItemsUsingXPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectItemsUsingXPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectSingleItemUsingXPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectSingleItemUsingXPath" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_SelectSingleItemUsingXPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectSingleItemUsingXPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetChildren_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildren" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetChildren_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_CreateItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItem" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_CreateItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_UpdateItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItem" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_UpdateItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_DeleteItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItem" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_DeleteItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetFixedPaths_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedPaths" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_GetFixedPaths_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedPathsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_RefreshFeed_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshFeed" />
+  </wsdl:message>
+  <wsdl:message name="SitecoreService_RefreshFeed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshFeedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SitecoreService">
+    <wsdl:operation name="GetItemById">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetItemById" message="tns:SitecoreService_GetItemById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetItemByIdResponse" message="tns:SitecoreService_GetItemById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemByPath">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetItemByPath" message="tns:SitecoreService_GetItemByPath_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetItemByPathResponse" message="tns:SitecoreService_GetItemByPath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetRootItem" message="tns:SitecoreService_GetRootItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetRootItemResponse" message="tns:SitecoreService_GetRootItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsByIds">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetItemsByIds" message="tns:SitecoreService_GetItemsByIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetItemsByIdsResponse" message="tns:SitecoreService_GetItemsByIds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/SelectItems" message="tns:SitecoreService_SelectItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/SelectItemsResponse" message="tns:SitecoreService_SelectItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectSingleItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/SelectSingleItem" message="tns:SitecoreService_SelectSingleItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/SelectSingleItemResponse" message="tns:SitecoreService_SelectSingleItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectItemsUsingXPath">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/SelectItemsUsingXPath" message="tns:SitecoreService_SelectItemsUsingXPath_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/SelectItemsUsingXPathResponse" message="tns:SitecoreService_SelectItemsUsingXPath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectSingleItemUsingXPath">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/SelectSingleItemUsingXPath" message="tns:SitecoreService_SelectSingleItemUsingXPath_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/SelectSingleItemUsingXPathResponse" message="tns:SitecoreService_SelectSingleItemUsingXPath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetChildren" message="tns:SitecoreService_GetChildren_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetChildrenResponse" message="tns:SitecoreService_GetChildren_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/CreateItem" message="tns:SitecoreService_CreateItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/CreateItemResponse" message="tns:SitecoreService_CreateItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/UpdateItem" message="tns:SitecoreService_UpdateItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/UpdateItemResponse" message="tns:SitecoreService_UpdateItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/DeleteItem" message="tns:SitecoreService_DeleteItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/DeleteItemResponse" message="tns:SitecoreService_DeleteItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedPaths">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/GetFixedPaths" message="tns:SitecoreService_GetFixedPaths_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/GetFixedPathsResponse" message="tns:SitecoreService_GetFixedPaths_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshFeed">
+      <wsdl:input wsaw:Action="http://tempuri.org/SitecoreService/RefreshFeed" message="tns:SitecoreService_RefreshFeed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SitecoreService/RefreshFeedResponse" message="tns:SitecoreService_RefreshFeed_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_SitecoreService" type="tns:SitecoreService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetItemById">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetItemById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemByPath">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetItemByPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootItem">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetRootItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsByIds">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetItemsByIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectItems">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/SelectItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSingleItem">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/SelectSingleItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectItemsUsingXPath">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/SelectItemsUsingXPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSingleItemUsingXPath">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/SelectSingleItemUsingXPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetChildren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateItem">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/CreateItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItem">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/UpdateItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItem">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/DeleteItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedPaths">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/GetFixedPaths" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshFeed">
+      <soap:operation soapAction="http://tempuri.org/SitecoreService/RefreshFeed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SitecoreService">
+    <wsdl:port name="BasicHttpBinding_SitecoreService" binding="tns:BasicHttpBinding_SitecoreService">
+      <soap:address location="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

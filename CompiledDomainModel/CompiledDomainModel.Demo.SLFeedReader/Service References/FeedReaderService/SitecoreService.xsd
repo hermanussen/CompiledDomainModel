@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/MyDomainModel.Wcf" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyDomainModel.Wcf" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ChildItemCollectionRef" />
+      <xs:element minOccurs="0" name="ItemID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ItemLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemVersion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Item" nillable="true" type="tns:Item" />
+  <xs:complexType name="ChildItemCollectionRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ParentId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChildItemCollectionRef" nillable="true" type="tns:ChildItemCollectionRef" />
+  <xs:complexType name="DomainObjectBase">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Item">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DomainObjectBase" nillable="true" type="tns:DomainObjectBase" />
+  <xs:complexType name="FeedItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainObjectBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Link" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FeedItem" nillable="true" type="tns:FeedItem" />
+  <xs:complexType name="FeedCollection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainObjectBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RemoveOldItems" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FeedCollection" nillable="true" type="tns:FeedCollection" />
+  <xs:complexType name="Feed">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainObjectBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Feed" nillable="true" type="tns:Feed" />
+  <xs:complexType name="Comment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainObjectBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FeedItem" nillable="true" type="tns:ItemRef" />
+          <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Comment" nillable="true" type="tns:Comment" />
+  <xs:complexType name="ItemRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferenceId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemRef" nillable="true" type="tns:ItemRef" />
+  <xs:complexType name="ArrayOfItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItem" nillable="true" type="tns:ArrayOfItem" />
+  <xs:complexType name="FixedPaths">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="tns:Item" />
+      <xs:element minOccurs="0" name="Content_Comments" nillable="true" type="tns:Item" />
+      <xs:element minOccurs="0" name="Content_Feeds" nillable="true" type="tns:FeedCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedPaths" nillable="true" type="tns:FixedPaths" />
+</xs:schema>

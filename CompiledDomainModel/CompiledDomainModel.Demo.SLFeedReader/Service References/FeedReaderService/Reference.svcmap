@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d8aa11f4-9819-4256-9a77-050e03db6ae3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SitecoreService.wsdl" MetadataType="Wsdl" ID="97ebf3b0-947b-435c-8300-436d878a812d" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?wsdl" />
+    <MetadataFile FileName="SitecoreService.disco" MetadataType="Disco" ID="cc79b437-d66c-4cec-a324-b77f5cde2e16" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?disco" />
+    <MetadataFile FileName="SitecoreService.xsd" MetadataType="Schema" ID="4a6b292d-e70c-4ec0-a50a-d172ab8b9170" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SitecoreService1.xsd" MetadataType="Schema" ID="96eed659-494a-4f1c-88f7-a6ac1679ad80" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SitecoreService2.xsd" MetadataType="Schema" ID="ef2ee1e2-404d-4f7f-81a0-e83ca4977477" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SitecoreService3.xsd" MetadataType="Schema" ID="f2392fac-55d5-4525-90c1-170299bd57ba" SourceId="1" SourceUrl="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

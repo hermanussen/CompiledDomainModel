@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_SitecoreService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://sitecorewebsite/MyDomainModel/Wcf/SitecoreService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_SitecoreService"
+                contract="FeedReaderService.SitecoreService" name="BasicHttpBinding_SitecoreService" />
+        </client>
+    </system.serviceModel>
+</configuration>

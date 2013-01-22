@@ -1,0 +1,707 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>CompiledDomainModel Sitecore Module Documentation</title>
+    <style type="text/css">
+        p.warning
+        {
+        	color: Red;
+        }
+        img
+        {
+        	border: 1px solid black;
+        }
+        
+        .gallerycontainer
+        {
+            position: relative;
+        }
+
+        .thumbnail img
+        {
+            border: 1px solid black;
+            margin: 0 5px 5px 0;
+        }
+
+        .thumbnail:hover
+        {
+            background-color: transparent;
+        }
+
+        .thumbnail:hover img
+        {
+            border: 1px solid blue;
+        }
+
+        span.imgSmall
+        {
+        	/*CSS for enlarged image*/
+            position: fixed;
+            visibility: hidden;
+        }
+
+        span.imgBig img
+        {
+        	/*CSS for enlarged image*/
+            border: 1px solid #000000;
+            padding: 2px;
+        }
+
+        span.imgBig
+        {
+        	/*CSS for enlarged image*/
+        	position: static;
+        	display: block;
+        	clear: left;
+            visibility: visible;
+            top: 0;
+            margin-left: 100px;
+            z-index: 50;
+        }
+        
+        /* C# code colorization */
+        
+        .csharpcode, .csharpcode pre
+        {
+	        font-size: small;
+	        color: black;
+	        font-family: Consolas, "Courier New", Courier, Monospace;
+	        background-color: #ffffff;
+	        /*white-space: pre;*/
+        }
+
+        .csharpcode pre { margin: 0em; }
+
+        .csharpcode .rem { color: #008000; }
+
+        .csharpcode .kwrd { color: #0000ff; }
+
+        .csharpcode .str { color: #006080; }
+
+        .csharpcode .op { color: #0000c0; }
+
+        .csharpcode .preproc { color: #cc6633; }
+
+        .csharpcode .asp { background-color: #ffff00; }
+
+        .csharpcode .html { color: #800000; }
+
+        .csharpcode .attr { color: #ff0000; }
+
+        .csharpcode .alt 
+        {
+	        background-color: #f4f4f4;
+	        width: 100%;
+	        margin: 0em;
+        }
+
+        .csharpcode .lnum { color: #606060; }
+
+    </style>
+
+</head>
+<body>
+    <h1>CompiledDomainModel Sitecore Module Documentation</h1>
+    <h2>Quick introduction</h2>
+    <p>The CompiledDomainModel module helps you create domain model classes based on your Sitecore templates and is capable of validating the model with Sitecore data at any given moment. It is useful for 2 situations in particular:</p>
+    <ol>
+        <li>You need to ensure that references to fields are correct (e.g. in fieldrenderers). You can make the references hardcoded so that you will get compile-time errors if a reference is incorrect.</li>
+        <li>You need to implement some business logic that relates to your Sitecore items. You will be able to use typed wrapper classes for your items and you can access fixed paths in the content tree (e.g. for configuration data).</li>
+    </ol>
+    <p>Some of the key features are listed here (for a more comprehensive list, check the <a href="#chapter8">release notes</a>):</p>
+    <ul>
+        <li>Generate typed wrapper classes using the code generator application within Sitecore</li>
+        <li>Generate a class structure based on items in the content tree that should not change (fixed paths), for easy and reliable access</li>
+        <li>Generate a database schema called DomainModelViews, that contains a view for each template (Sitecore fields will be columns)</li>
+        <li>Validate the domain model that is loaded at runtime and the fixed paths with the validator application within Sitecore</li>
+    </ul>
+    <div class="gallerycontainer">
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_settings.png" alt="screenshot" width="313px" height="95px" border="0" />Settings</span><span class="imgSmall"><img src="Images/screenshot_settings.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_domainobjectset.png" alt="screenshot" width="339px" height="210px" border="0" />Configure which templates to use as domain objects</span><span class="imgSmall"><img src="Images/screenshot_domainobjectset.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_fixedpathset.png" alt="screenshot" width="324px" height="123px" border="0" />Configure which paths are fixed</span><span class="imgSmall"><img src="Images/screenshot_fixedpathset.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_report_domainobjects.png" alt="screenshot" width="191px" height="136px" border="0" />Create a quick overview of the loaded domain model</span><span class="imgSmall"><img src="Images/screenshot_report_domainobjects.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_report_fixedpaths.png" alt="screenshot" width="97px" height="95px" border="0" />Create a quick overview of the fixed paths (with marked domain objects)</span><span class="imgSmall"><img src="Images/screenshot_report_fixedpaths.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_menu.png" alt="screenshot" width="202px" height="71px" border="0" />Start the code generator and validations applications from the Sitecore menu</span><span class="imgSmall"><img src="Images/screenshot_menu.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_code_generator.png" alt="screenshot" width="255px" height="134px" border="0" />Generate domain model code, or generate using custom templates</span><span class="imgSmall"><img src="Images/screenshot_code_generator.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_validator_consistent.png" alt="screenshot" width="254px" height="65px" border="0" />Validate the loaded domain model against the database</span><span class="imgSmall"><img src="Images/screenshot_validator_consistent.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_validator_inconsistent.png" alt="screenshot" width="254px" height="127px" border="0" />Detailed errors and warnings are displayed if there are inconsistencies</span><span class="imgSmall"><img src="Images/screenshot_validator_inconsistent.png" alt="screenshot" /></span><br />
+        <span class="thumbnail" onmouseover="this.nextSibling.className = 'imgBig'" onmouseout="this.nextSibling.className = 'imgSmall'"><img src="Images/screenshot_silverlight_feedreader.png" alt="screenshot" width="308px" height="85px" border="0" />A Silverlight demo application is available for consuming a generated WCF service</span><span class="imgSmall"><img src="Images/screenshot_silverlight_feedreader.png" alt="screenshot" /></span><br />
+    </div>
+    <p>This module was created by Robin Hermanussen and released under the GPLv3 license.</p>
+    <h2>Table of contents</h2>
+    <ol>
+        <li><a href="#chapter1">Why you should or should not use this module</a></li>
+        <li><a href="#chapter2">Installing and configuring the module</a></li>
+        <li><a href="#chapter3">Generating the domain model code</a></li>
+        <li><a href="#chapter4">Using the domain model code</a></li>
+        <li><a href="#chapter5">Validating the domain model at runtime</a></li>
+        <li><a href="#chapter6">Reports</a></li>
+        <li><a href="#chapter7">Running the FeedReader demo application</a></li>
+        <li><a href="#chapter8">Release notes</a></li>
+        <li><a href="#chapter9">Contact the author</a></li>
+    </ol>
+
+    <h2><a name="chapter1">Why you should or should not use this module</a></h2>
+    <p>All programmers make mistakes sometimes. And when they do, they want to know about it ASAP. That's why programmers like <a href="http://en.wikipedia.org/wiki/Strong_typing">strong typing</a>. It allows them to know about problems compile-time.</p>
+    <p>In Sitecore, restrictions on items are defined using templates. The templates define fields with different types and content editors who work with items based on those templates are restricted to using those fields.</p>
+    <p>One of the problems that I run into as a Sitecore developer is that templates and template fields are sometimes changed, which can cause code that makes assumptions about the structure of Sitecore items to fail. That's why I often have to write code that checks these assumptions at runtime and gives relevant feedback when the assumptions are incorrect.</p>
+    <p>These checks generally clutter up my code and distract me from the relevant tasks I'm working on. Even worse, I sometimes forget to do the checks in code. And when something actually fails at runtime, it is often too late; the code is already being tested or in production. Extensive regression testing can aid in finding these problems, but I'd really like to know about these problems at an early stage.</p>
+    <p>And that's what this module can help you with. You can generate code to help you navigate Sitecore items based on the restrictions in the templates. Checking the assumptions becomes unnecessary, because the module can validate them and provide you with extensive feedback if any problems do arise.</p>
+    <p>Because the generated code uses partial classes, it is quite easy to implement specific behavior for items with specific templates. It's great for coding business logic.</p>
+    <p>The module is designed so that there is no entanglement with your templates or code. In fact, you can even make sure that there are no dependencies with the module at all. If you check the "Remove dependencies" checkbox on the settings item then after you have created your domain model, you could remove the entire module. You would also lose the validation abilities, so this is not recommended.</p>
+    <p>Possible reasons for using this module:</p>
+    <ul>
+        <li>You need to create business logic based on Sitecore items.</li>
+        <li>You need to ensure that code, including (sub)layouts, reference template fields correctly during compile time (in combination with runtime validation of the model itself). Typos in field names that go unnoticed will be a thing of the past.</li>
+        <li>You need to ensure that code references to certain fixed items in the content tree don't break (e.g. for configuration items).</li>
+        <li>You need to see differences for relevant templates quickly between several environments (check differences in generated domain model code).</li>
+        <li>You need to review this module without breaking your Sitecore installation.</li>
+    </ul>
+    <p>Possible reasons for NOT using this module:</p>
+    <ul>
+        <li>Your Sitecore application does not have much business logic and you can't spare the (limited) overhead of this module.</li>
+        <li>Your application is quite small, so regression testing is easy (you will find typos easily).</li>
+        <li>Non-programmers will work on your (sub)layouts and will not understand how to use the functionality (although you could let them not use the wrapper classes).</li>
+    </ul>
+    <h2><a name="chapter2">Installing and configuring the module</a></h2>
+    <p>To install the module, you can follow the same procedure as for any Sitecore module. The basic steps:</p>
+    <ul>
+        <li>Login to the Sitecore backend.</li>
+        <li>Open the Sitecore menu and select "Development Tools" > "Installation Wizard".</li>
+        <li>Upload the "CompiledDomainModel.zip" ZIP package.</li>
+        <li>Follow the rest of the wizard steps and restart the client (mark the option at the end).</li>
+    </ul>
+    <p>After you've installed the module, you can configure it by going to /sitecore/system/Modules/CompiledDomainModel/Settings.</p>
+    <div><img src="Images/screenshot_settings.png" alt="screenshot" /></div>
+    <p>The settings:</p>
+    <ul>
+        <li><span style="font-weight: bold">Namespace</span> - The C# namespace to put the generated code in.</li>
+        <li><span style="font-weight: bold">Enable validation on startup</span> - If checked, the domain model will be validated on startup and the results will be logged in the Sitecore log.</li>
+        <li><span style="font-weight: bold">Throw exception on startup validation failed</span> - If checked, the validation on startup will throw an exception when it finds errors. This is useful for developers who need to know about the validation status immediately (after the exception is thrown, just refresh the page to continue). It is recommended that you leave this unchecked for production environments.</li>
+        <li><span style="font-weight: bold">Remove dependencies</span> - If checked, removes all dependencies with the CDM module DLL from generated code. This is useful if you cannot use CDM in your production system or you are gradually removing CDM from your system. The CDM validation can not be used if this is checked.</li>
+    </ul>
+    <p>Next, you will need to add sets to your settings. A set is a settings item that contains configuration for a group of items that will be used for the code generation.</p>
+    <p>There are 2 types of sets. The first is the DomainObjectSet. It can be used to configure for what templates to generate typed wrapper classes.</p>
+    <div><img src="Images/screenshot_domainobjectset.png" alt="screenshot" /></div>
+    <p>The DomainObjectSet:</p>
+    <ul>
+        <li><span style="font-weight: bold">Templates to map to Domain Model</span> - The templates for which to generate typed wrapper classes. These can be any templates, but multiple inheritance is not allowed between configured templates (use contributing templates to support it).</li>
+        <li><span style="font-weight: bold">Templates that contribute to Domain Model</span> - Templates that can not be used as typed wrapper classes, because multiple inheritance is not supported in C#. If a domain object inherits from any of these templates, they will implement the template's fields and an interface that marks the object. Also, a static class is generated that allows easy extension and contains metadata.</li>
+        <li><span style="font-weight: bold">Validate in databases</span> - Write down the names of the databases (comma separated) in which to check the structure during validation. This allows, for example, validating templates that are published.</li>
+    </ul>
+    <p>The second type of set that is supported is the FixedPathSet. It can be used to select paths in the content tree that should never change. The generated code relies on this, so the validation checks to see if everything is right where it belongs. The fixed paths are useful for defining what items are used for things like global configuration. The generated code can then be used to access the items using a syntax that corresponds to the Sitecore content tree structure (e.g. MyDomainModel.Content.Home.Configuration.Theme.FixedLocation.DomainObject).</p>
+    <p>There are also relative fixed paths. They can be used to define a fixed structure. That structure can later be used to get quick access to parts of the content tree that are not fixed, but that do have that same structure. This can be useful, for example, in multi-site environments where a part of the structure of each site is always the same. It is recommended to use Sitecore branches to define these structures.</p>
+    <div><img src="Images/screenshot_fixedpathset.png" alt="screenshot" /></div>
+    <p>The FixedPathSet:</p>
+    <ul>
+        <li><span style="font-weight: bold">Fixed tree locations</span> - Select locations in the tree that should remain available at any time.</li>
+        <li><span style="font-weight: bold">Relative fixed tree locations</span> - Select items that (in combination with their descendants) define a static structure that will be available at different locations in the content tree.</li>
+        <li><span style="font-weight: bold">Validate in databases</span> - Write down the names of the databases (comma separated) in which to check the structure during validation. This allows, for example, validating fixed paths that are published.</li>
+    </ul>
+    <p>After defining this configuration, you are ready to generate code. Any changes made to this configuration, to the templates in the structure or to the fixed paths in the content tree, will cause the validation to display error and/or warning messages.</p>
+    <p>Note however, that relative fixed paths can only be validated with the structure in which they are defined. Be sure to use the GetValidationMessages() method on an instantiated relative fixed path to determine if the relative path used is valid at that time.</p>
+    
+    <h2><a name="chapter3">Generating the domain model code</a></h2>
+    <p>With the configuration in place, you can start generating code. Open the CompiledDomainModel Code Generator application in Sitecore (you need to have developer rights). It is located under the Sitecore menu > "Development Tools" > "CompiledDomainModel Code Generator"</p>
+    <div><img src="Images/screenshot_menu.png" alt="screenshot" /></div>
+
+    <p>Now you can see that the code generation has already been executed. Just use the "Copy to Clipboard" button and paste inside a .cs file in your solution (or use the "Download" button).</p>
+    <div><img src="Images/screenshot_code_generator.png" alt="screenshot" /></div>
+    <p>There are a few reasons why the generated code is targeted at just 1 source file:</p>
+    <ul>
+        <li>Any problems with source conrol systems can be avoided</li>
+        <li>You don't have to depend on your solution and Sitecore being in the same environment (e.g. you could generate the domain model in a production environment and easily compare it to the development version)</li>
+        <li>Any additional code using partial classes can still be added in separate files</li>
+    </ul>
+
+    <p>The domain model that is generated uses the same inheritance structure as the Sitecore templates. If it is impossible to generate a valid C# domain model because of multiple inheritance, a detailed error message will be displayed. You can use contributing templates to deal with multiple inheritance.</p>
+
+    <p>As you may have noticed, there is a combo box that can be used to select a different "generator". This can be used to select a different code generation template.</p>
+    <p>If you place a .ascx file in the CustomGenerators folder, it will automatically show up in the combobox. I recommend using the same codebehind file (or inherit from it) as is used in DomainModelGenerator.aspx.</p>
+    <p>It is important to note that the standard validation functionality will only check the domain model if it is generated from the default generator. Also, creating your own version of the default generator is discouraged; you will not be able to benefit from future releases of the module. If there are features you would like to have added or bugs you would like to have fixed, please <a href="#chapter9">contact the author</a>.</p>
+
+    <p>Two custom generators are added to the combobox by default. The SqlViewsGenerator can be used to generate a SQL script. The script adds or replaces a database schema to your SQL Server database (other databases should be easy to implement). The schema will contain views that correspond to the templates you have configured to be in the domain model. That way, you can easily find all items and their contents in the database.</p>
+    <p>So if you would have, for example, a template in Sitecore called "Product" that has the fields "Product number", "Price", "Amount in stock" and "Description". Then you would get a database view called DomainModelViews.Product with the following columns:</p>
+    <ul>
+        <li>ItemID - The Sitecore item ID, for reference. This is also useful if you want to join several views.</li>
+        <li>ItemName - The name of the Sitecore item.</li>
+        <li>ItemCreated - Timestamp with the date and time that the item was created.</li>
+        <li>ItemUpdated - Timestamp with the date and time that the item was last modified.</li>
+        <li>ItemLanguage - The language that the item is in; there will be separate rows for all version/language combinations.</li>
+        <li>ItemVersion - The version number of the item.</li>
+        <li>IsLatestVersion - Will be set to 'yes' if it is the latest version or 'no' if not. This is useful if you want to filter older versions out in your query.</li>
+        <li>ProductNumber - The value of the "Product number" field of the Sitecore item.</li>
+        <li>Price - The value of the "Price" field of the Sitecore item.</li>
+        <li>AmountInStock - The value of the "Amount in stock" field of the Sitecore item.</li>
+        <li>Description - The value of the "Description" field of the Sitecore item.</li>
+    </ul>
+    <p>The views are useful if you need to investigate problems in your database or if you need to generate some reports without using the Sitecore API.</p>
+
+    <p>The second custom generator is called WcfServiceGenerator. It can be used to generate a WCF service. That way, you can have typed access to your Sitecore system from any service consumer.</p>
+    <p>Included in the source code is an example consumer application in the form of a Silverlight RSS feed reader. It is similar to the ASP.NET feedreader application.</p>
+    <p class="warning">Warning: the WcfServiceGenerator is purely experimental. In its current form, using it would create a huge security risk. This is because many of the operations use a SecurityDisabler. In short; any service consumer would have full control of the content in your Sitecore installation.</p>
+    <p>If you would like to use the WcfServiceGenerator in a production environment, then please contact me for advice. Also, if you have any suggestions, contact me.</p>
+    <div><img src="Images/screenshot_silverlight_feedreader.png" alt="screenshot" /></div>
+
+    <h2><a name="chapter4">Using the domain model code</a></h2>
+    <p>After generating the domain model and pasting it into your solution, take a look at the code. You will see that it is documented. If the "Help" section of your templates and fields are filled, you will find the relevant information in the comments.</p>
+    <p>The following code examples are based on the <a href="#chapter7">demo application.</a></p>
+    <p>To start, you can get a typed wrapper for a Sitecore item by calling the static method ItemWrapper.CreateTypedWrapper(...). This will return a Domain Model object that best matches the item. If there is no match, you will still receive an Item wrapper (it will not contain typed access to the item's fields, but you can still use other functionality).</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span>        [Bindable(<span class="kwrd">true</span>)]</pre>
+    <pre><span class="lnum">   2:  </span>        <span class="kwrd">public</span> Feed Feed</pre>
+    <pre><span class="lnum">   3:  </span>        {</pre>
+    <pre><span class="lnum">   4:  </span>            get</pre>
+    <pre><span class="lnum">   5:  </span>            {</pre>
+    <pre><span class="lnum">   6:  </span>                <span class="kwrd">if</span> (feed == <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">   7:  </span>                {</pre>
+    <pre><span class="lnum">   8:  </span>                    feed = ItemWrapper.CreateTypedWrapper(Sitecore.Context.Item) <span class="kwrd">as</span> Feed;</pre>
+    <pre><span class="lnum">   9:  </span>                }</pre>
+    <pre><span class="lnum">  10:  </span>                <span class="kwrd">return</span> feed;</pre>
+    <pre><span class="lnum">  11:  </span>            }</pre>
+    <pre><span class="lnum">  12:  </span>            set</pre>
+    <pre><span class="lnum">  13:  </span>            {</pre>
+    <pre><span class="lnum">  14:  </span>                feed = <span class="kwrd">value</span>;</pre>
+    <pre><span class="lnum">  15:  </span>            }</pre>
+    <pre><span class="lnum">  16:  </span>        }</pre>
+    </div>
+    <p>In this example, the context item is passed to the static method to create a typed wrapper and the result is then cast to a Feed object (line 8). You could also use the constructor of the Feed class. That would throw an exception if you would pass it an item of the wrong type.</p>
+    <p>After you've created an item wrapper, you have access to the specific fields of the item. For instance, in an ASP.NET page/control.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span>            &lt;a href=<span class="str">"&lt;%# Feed.Url %&gt;"</span> target=<span class="str">"_blank"</span> name=<span class="str">"feed_&lt;%# Feed.Item.ID.ToString() %&gt;"</span>&gt;</pre>
+    <pre><span class="lnum">   2:  </span>                &lt;%# Feed.Name %&gt;</pre>
+    <pre><span class="lnum">   3:  </span>            &lt;/a&gt;</pre>
+    </div>
+    <p>As you can see, the Url and Name fields of the item can be referenced in a safe manner. If you prefer to use the Sitecore fieldrenderers, I would recommend using the following method.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span>            &lt;sc:Link runat=<span class="str">"server"</span> Item=<span class="str">"&lt;%# Feed.Item %&gt;"</span> Field=<span class="str">"&lt;%# MyDomainModel.Feed.FIELD_URL %&gt;"</span>&gt;</pre>
+    <pre><span class="lnum">   2:  </span>                &lt;sc:Text runat=<span class="str">"server"</span> Item=<span class="str">"&lt;%# Feed.Item %&gt;"</span> Field=<span class="str">"&lt;%# MyDomainModel.Feed.FIELD_NAME %&gt;"</span> /&gt;</pre>
+    <pre><span class="lnum">   3:  </span>            &lt;/sc:Link&gt;</pre>
+    </div>
+    <p>This way, if the reference to the fieldname is incorrect, you will get an error when the ASP.NET page/control is compiled. This allows you to detect problems at an early stage. Otherwise, the renderers will just display nothing and it may not be clear that there actually is a problem.</p>
+    <p>In practice, the real advantage of this module is in logic in the domain model itself. It can be easily extended to support import/export functionality, business rules or anything else a domain model layer is useful for. Consider, for example, this way of extending the FeedItem domain model class with functionality to create a new item based on a .NET SyndicationItem.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span><span class="kwrd">namespace</span> MyDomainModel</pre>
+    <pre><span class="lnum">   2:  </span>{</pre>
+    <pre><span class="lnum">   3:  </span>    <span class="kwrd">public</span> <span class="kwrd">partial</span> <span class="kwrd">class</span> FeedItem</pre>
+    <pre><span class="lnum">   4:  </span>    {</pre>
+    <pre><span class="lnum">   5:  </span>        <span class="kwrd">public</span> FeedItem(Feed feed, SyndicationItem syndicationItem)</pre>
+    <pre><span class="lnum">   6:  </span>            : <span class="kwrd">this</span>(feed.Item.Add(ItemUtil.ProposeValidItemName(GetTitle(syndicationItem)), <span class="kwrd">new</span> Sitecore.Data.TemplateID(FeedItem.TEMPLATE_ID)))</pre>
+    <pre><span class="lnum">   7:  </span>        {</pre>
+    <pre><span class="lnum">   8:  </span>            <span class="kwrd">int</span> maxSortOrder;</pre>
+    <pre><span class="lnum">   9:  </span>            <span class="kwrd">if</span> (feed.Children != <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">  10:  </span>            {</pre>
+    <pre><span class="lnum">  11:  </span>                maxSortOrder = feed.Children.Select(child =&gt; child.Item.Appearance.Sortorder).Max();</pre>
+    <pre><span class="lnum">  12:  </span>            }</pre>
+    <pre><span class="lnum">  13:  </span>            <span class="kwrd">else</span></pre>
+    <pre><span class="lnum">  14:  </span>            {</pre>
+    <pre><span class="lnum">  15:  </span>                maxSortOrder = 0;</pre>
+    <pre><span class="lnum">  16:  </span>            }</pre>
+    <pre><span class="lnum">  17:  </span>            UpdateFromSyndicationItem(syndicationItem, maxSortOrder + 10);</pre>
+    <pre><span class="lnum">  18:  </span>        }</pre>
+    <pre><span class="lnum">  19:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  20:  </span>        <span class="kwrd">public</span> <span class="kwrd">void</span> UpdateFromSyndicationItem(SyndicationItem syndicationItem)</pre>
+    <pre><span class="lnum">  21:  </span>        {</pre>
+    <pre><span class="lnum">  22:  </span>            UpdateFromSyndicationItem(syndicationItem, 0);</pre>
+    <pre><span class="lnum">  23:  </span>        }</pre>
+    <pre><span class="lnum">  24:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  25:  </span>        <span class="kwrd">public</span> <span class="kwrd">void</span> UpdateFromSyndicationItem(SyndicationItem syndicationItem, <span class="kwrd">int</span> sortOrder)</pre>
+    <pre><span class="lnum">  26:  </span>        {</pre>
+    <pre><span class="lnum">  27:  </span>            <span class="kwrd">using</span> (<span class="kwrd">new</span> EditContext(Item, SecurityCheck.Disable))</pre>
+    <pre><span class="lnum">  28:  </span>            {</pre>
+    <pre><span class="lnum">  29:  </span>                Title = GetTitle(syndicationItem);</pre>
+    <pre><span class="lnum">  30:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  31:  </span>                <span class="kwrd">if</span> (syndicationItem.Links != <span class="kwrd">null</span></pre>
+    <pre><span class="lnum">  32:  </span>                    &amp;&amp; syndicationItem.Links.Count &gt; 0</pre>
+    <pre><span class="lnum">  33:  </span>                    &amp;&amp; syndicationItem.Links.First().Uri != <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">  34:  </span>                {</pre>
+    <pre><span class="lnum">  35:  </span>                    Link = syndicationItem.Links.First().Uri.ToString();</pre>
+    <pre><span class="lnum">  36:  </span>                }</pre>
+    <pre><span class="lnum">  37:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  38:  </span>                <span class="kwrd">if</span> (syndicationItem.Summary != <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">  39:  </span>                {</pre>
+    <pre><span class="lnum">  40:  </span>                    Description = syndicationItem.Summary.Text;</pre>
+    <pre><span class="lnum">  41:  </span>                }</pre>
+    <pre><span class="lnum">  42:  </span>                <span class="kwrd">else</span> <span class="kwrd">if</span> (syndicationItem.Content != <span class="kwrd">null</span> &amp;&amp; syndicationItem.Content <span class="kwrd">is</span> TextSyndicationContent)</pre>
+    <pre><span class="lnum">  43:  </span>                {</pre>
+    <pre><span class="lnum">  44:  </span>                    Description = ((TextSyndicationContent) syndicationItem.Content).Text;</pre>
+    <pre><span class="lnum">  45:  </span>                }</pre>
+    <pre><span class="lnum">  46:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  47:  </span>                <span class="kwrd">if</span> (sortOrder &gt; 0)</pre>
+    <pre><span class="lnum">  48:  </span>                {</pre>
+    <pre><span class="lnum">  49:  </span>                    Item.Appearance.Sortorder = sortOrder;</pre>
+    <pre><span class="lnum">  50:  </span>                }</pre>
+    <pre><span class="lnum">  51:  </span>            }</pre>
+    <pre><span class="lnum">  52:  </span>        }</pre>
+    <pre><span class="lnum">       </span>        ...</pre>
+    <pre><span class="lnum">  90:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  91:  </span>    }</pre>
+    <pre><span class="lnum">  92:  </span>}</pre>
+    </div>
+    <p>As you can see, the constructor (line 5), takes 2 arguments: the feed under which the item can be placed, and a SyndicationItem to get the data from. The constructor immediately creates a new Sitecore Item and passes it to a generated constructor (line 6). After that, the item is used to fill the title, link and description fields (lines 29, 35, 40 and 44).</p>
+    <p>Also worth noting, is the easy way of navigating the domain model. If a template contains fields that link to other items, suitable accessors for these links are generated. Comments, for example, have a reference to the feed item they apply to. You can see this in the generated code:</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span>        <span class="rem">/// &lt;summary&gt;</span></pre>
+    <pre><span class="lnum">   2:  </span>        <span class="rem">/// Description: The item in a feed that the comment aplies to</span></pre>
+    <pre><span class="lnum">   3:  </span>        <span class="rem">/// &lt;/summary&gt;</span></pre>
+    <pre><span class="lnum">   4:  </span>        <span class="kwrd">public</span> ItemWrapper FeedItem</pre>
+    <pre><span class="lnum">   5:  </span>        {</pre>
+    <pre><span class="lnum">   6:  </span>            get</pre>
+    <pre><span class="lnum">   7:  </span>            {</pre>
+    <pre><span class="lnum">   8:  </span>                <span class="kwrd">return</span> ItemWrapper.CreateTypedWrapper(GetField&lt;InternalLinkField&gt;(ID.Parse(<span class="str">"{28E29796-50D2-4E51-88DE-A0089D2734BF}"</span>), <span class="str">"FeedItem"</span>).TargetItem);</pre>
+    <pre><span class="lnum">   9:  </span>            }</pre>
+    <pre><span class="lnum">  10:  </span>            set</pre>
+    <pre><span class="lnum">  11:  </span>            {</pre>
+    <pre><span class="lnum">  12:  </span>                InternalLinkField field = GetField&lt;InternalLinkField&gt;(ID.Parse(<span class="str">"{28E29796-50D2-4E51-88DE-A0089D2734BF}"</span>), <span class="str">"FeedItem"</span>);</pre>
+    <pre><span class="lnum">  13:  </span>                <span class="kwrd">if</span> (Object.Equals(field.Value, <span class="kwrd">value</span>))</pre>
+    <pre><span class="lnum">  14:  </span>                {</pre>
+    <pre><span class="lnum">  15:  </span>                    <span class="kwrd">return</span>;</pre>
+    <pre><span class="lnum">  16:  </span>                }</pre>
+    <pre><span class="lnum">  17:  </span>                RaisePropertyChanging(<span class="str">"FeedItem"</span>);</pre>
+    <pre><span class="lnum">  18:  </span>                field.Value = <span class="kwrd">value</span>.Item.ID.ToString();</pre>
+    <pre><span class="lnum">  19:  </span>                RaisePropertyChanged(<span class="str">"FeedItem"</span>);</pre>
+    <pre><span class="lnum">  20:  </span>            }</pre>
+    <pre><span class="lnum">  21:  </span>        }</pre>
+    <pre><span class="lnum">  22:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  23:  </span>        <span class="kwrd">public</span> T GetFeedItem&lt;T&gt;() <span class="kwrd">where</span> T : ItemWrapper</pre>
+    <pre><span class="lnum">  24:  </span>        {</pre>
+    <pre><span class="lnum">  25:  </span>            <span class="kwrd">return</span> ItemWrapper.CreateTypedWrapper(GetField&lt;InternalLinkField&gt;(ID.Parse(<span class="str">"{28E29796-50D2-4E51-88DE-A0089D2734BF}"</span>), <span class="str">"FeedItem"</span>).TargetItem) <span class="kwrd">as</span> T;</pre>
+    <pre><span class="lnum">  26:  </span>        }</pre>
+    </div>
+    <p>You can use the FeedItem property to get the feed item that the comment applies to. If you know what type of item the field references, you can use the GetFeedItem&lt;T&gt;() method. This will return the referenced item if it can be cast to the passed in type (T). Similar methods are generated for fields with multiple values. Also, similar methods are available to access children, descendants, parent, ancestors and referrers (check the generated ItemWrapper class).</p>
+    <p>Another feature that can be used is the Fixed paths feature. Code is generated for all the fixed paths like so:</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span><span class="kwrd">namespace</span> MyDomainModel.FixedPaths.Content</pre>
+    <pre><span class="lnum">   2:  </span>{</pre>
+    <pre><span class="lnum">   3:  </span>    <span class="rem">/// &lt;summary&gt;</span></pre>
+    <pre><span class="lnum">   4:  </span>    <span class="rem">/// Access the item at /sitecore/content/Comments.</span></pre>
+    <pre><span class="lnum">   5:  </span>    <span class="rem">/// The availability of the item is validated in the databases: master.</span></pre>
+    <pre><span class="lnum">   6:  </span>    <span class="rem">/// &lt;/summary&gt;</span></pre>
+    <pre><span class="lnum">   7:  </span>    [FixedPathAttribute(<span class="str">"{AFB27B25-41E5-4CFD-8C95-E40B9A95FA69}"</span>, <span class="str">"/sitecore/content/Comments"</span>, <span class="kwrd">new</span> <span class="kwrd">string</span>[] { <span class="str">"master"</span> })]</pre>
+    <pre><span class="lnum">   8:  </span>    <span class="kwrd">public</span> <span class="kwrd">static</span> <span class="kwrd">partial</span> <span class="kwrd">class</span> CommentsFixed</pre>
+    <pre><span class="lnum">   9:  </span>    {</pre>
+    <pre><span class="lnum">  10:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  11:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> ItemWrapper GetItemWrapper(Database database)</pre>
+    <pre><span class="lnum">  12:  </span>        {</pre>
+    <pre><span class="lnum">  13:  </span>            <span class="kwrd">return</span> <span class="kwrd">new</span> ItemWrapper(GetItem(database));</pre>
+    <pre><span class="lnum">  14:  </span>        }</pre>
+    <pre><span class="lnum">  15:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  16:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> ItemWrapper ItemWrapper</pre>
+    <pre><span class="lnum">  17:  </span>        {</pre>
+    <pre><span class="lnum">  18:  </span>            get</pre>
+    <pre><span class="lnum">  19:  </span>            {</pre>
+    <pre><span class="lnum">  20:  </span>                <span class="kwrd">return</span> GetItemWrapper(Sitecore.Context.Database);</pre>
+    <pre><span class="lnum">  21:  </span>            }</pre>
+    <pre><span class="lnum">  22:  </span>        }</pre>
+    <pre><span class="lnum">  23:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  24:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> ItemWrapper ItemWrapperFromMaster</pre>
+    <pre><span class="lnum">  25:  </span>        {</pre>
+    <pre><span class="lnum">  26:  </span>            get</pre>
+    <pre><span class="lnum">  27:  </span>            {</pre>
+    <pre><span class="lnum">  28:  </span>                <span class="kwrd">return</span> GetItemWrapper(Database.GetDatabase(<span class="str">"master"</span>));</pre>
+    <pre><span class="lnum">  29:  </span>            }</pre>
+    <pre><span class="lnum">  30:  </span>        }</pre>
+    <pre><span class="lnum">  31:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  32:  </span>        <span class="kwrd">private</span> <span class="kwrd">static</span> Item GetItem(Database database)</pre>
+    <pre><span class="lnum">  33:  </span>        {</pre>
+    <pre><span class="lnum">  34:  </span>            Item item = database.GetItem(ID.Parse(<span class="str">"{AFB27B25-41E5-4CFD-8C95-E40B9A95FA69}"</span>));</pre>
+    <pre><span class="lnum">  35:  </span>            <span class="kwrd">if</span> (item != <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">  36:  </span>            {</pre>
+    <pre><span class="lnum">  37:  </span>                <span class="kwrd">return</span> <span class="str">"/sitecore/content/Comments"</span>.Equals(item.Paths.FullPath)</pre>
+    <pre><span class="lnum">  38:  </span>                    ? item</pre>
+    <pre><span class="lnum">  39:  </span>                    : (database.GetItem(<span class="str">"/sitecore/content/Comments"</span>) ?? item);</pre>
+    <pre><span class="lnum">  40:  </span>            }</pre>
+    <pre><span class="lnum">  41:  </span>            <span class="kwrd">else</span></pre>
+    <pre><span class="lnum">  42:  </span>            {</pre>
+    <pre><span class="lnum">  43:  </span>                <span class="kwrd">return</span> database.GetItem(<span class="str">"/sitecore/content/Comments"</span>);</pre>
+    <pre><span class="lnum">  44:  </span>            }</pre>
+    <pre><span class="lnum">  45:  </span>        }</pre>
+    <pre><span class="lnum">  46:  </span>    }</pre>
+    <pre><span class="lnum">  47:  </span>}</pre>
+    </div>
+
+    <p>The generated code allows you to access the content item from code using this syntax: &lt;DOMAIN_MODEL_NAMESPACE&gt;.FixedPaths.&lt;DOT_SEPARATED_PATH&gt;.&lt;ITEM_NAME&gt;Fixed.ItemWrapper. This example shows how it is used to create a new comment for a FeedItem:</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span>        <span class="kwrd">public</span> <span class="kwrd">void</span> AddComment(<span class="kwrd">string</span> text)</pre>
+    <pre><span class="lnum">   2:  </span>        {</pre>
+    <pre><span class="lnum">   3:  </span>            <span class="kwrd">using</span> (<span class="kwrd">new</span> SecurityDisabler())</pre>
+    <pre><span class="lnum">   4:  </span>            {</pre>
+    <pre><span class="lnum">   5:  </span>                <span class="kwrd">new</span> Comment(FixedPaths.Content.CommentsFixed.ItemWrapper.Item, text, <span class="kwrd">this</span>);</pre>
+    <pre><span class="lnum">   6:  </span>            }</pre>
+    <pre><span class="lnum">   7:  </span>        }</pre>
+    </div>
+    <p>Alternatively, if you need to access a lot of paths at (nearly) the same location, you could add an entry in the usings.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span><span class="kwrd">using</span> MyDomainModel.FixedPaths.Content;</pre>
+    <pre><span class="lnum">       </span>        ...</pre>
+    <pre><span class="lnum">  56:  </span>        <span class="kwrd">public</span> <span class="kwrd">void</span> AddComment(<span class="kwrd">string</span> text)</pre>
+    <pre><span class="lnum">  57:  </span>        {</pre>
+    <pre><span class="lnum">  58:  </span>            <span class="kwrd">using</span> (<span class="kwrd">new</span> SecurityDisabler())</pre>
+    <pre><span class="lnum">  59:  </span>            {</pre>
+    <pre><span class="lnum">  60:  </span>                <span class="kwrd">new</span> Comment(CommentsFixed.ItemWrapper.Item, text, <span class="kwrd">this</span>);</pre>
+    <pre><span class="lnum">  61:  </span>            }</pre>
+    <pre><span class="lnum">  62:  </span>        }</pre>
+    </div>
+    <p>If the item at the fixed path has a template that can be used to create a domain model object, then the generated code is slightly different.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span><span class="kwrd">namespace</span> MyDomainModel.FixedPaths.Content</pre>
+    <pre><span class="lnum">   2:  </span>{</pre>
+    <pre><span class="lnum">   3:  </span>    <span class="rem">/// &lt;summary&gt;</span></pre>
+    <pre><span class="lnum">   4:  </span>    <span class="rem">/// Access the item at /sitecore/content/Feeds.</span></pre>
+    <pre><span class="lnum">   5:  </span>    <span class="rem">/// The availability of the item is validated in the databases: master.</span></pre>
+    <pre><span class="lnum">   6:  </span>    <span class="rem">/// &lt;/summary&gt;</span></pre>
+    <pre><span class="lnum">   7:  </span>    [FixedPathAttribute(<span class="str">"{65163E61-BCA0-4746-817F-FDD475A1C320}"</span>, <span class="str">"/sitecore/content/Feeds"</span>, <span class="kwrd">new</span> <span class="kwrd">string</span>[] { <span class="str">"master"</span> }, DomainObjectType = <span class="kwrd">typeof</span>(FeedCollection))]</pre>
+    <pre><span class="lnum">   8:  </span>    <span class="kwrd">public</span> <span class="kwrd">static</span> <span class="kwrd">partial</span> <span class="kwrd">class</span> FeedsFixed</pre>
+    <pre><span class="lnum">   9:  </span>    {</pre>
+    <pre><span class="lnum">  10:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  11:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> FeedCollection GetFeedCollection(Database database)</pre>
+    <pre><span class="lnum">  12:  </span>        {</pre>
+    <pre><span class="lnum">  13:  </span>            <span class="kwrd">return</span> <span class="kwrd">new</span> FeedCollection(GetItem(database));</pre>
+    <pre><span class="lnum">  14:  </span>        }</pre>
+    <pre><span class="lnum">  15:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  16:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> FeedCollection FeedCollection</pre>
+    <pre><span class="lnum">  17:  </span>        {</pre>
+    <pre><span class="lnum">  18:  </span>            get</pre>
+    <pre><span class="lnum">  19:  </span>            {</pre>
+    <pre><span class="lnum">  20:  </span>                <span class="kwrd">return</span> GetFeedCollection(Sitecore.Context.Database);</pre>
+    <pre><span class="lnum">  21:  </span>            }</pre>
+    <pre><span class="lnum">  22:  </span>        }</pre>
+    <pre><span class="lnum">  23:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  24:  </span>        <span class="kwrd">public</span> <span class="kwrd">static</span> FeedCollection FeedCollectionFromMaster</pre>
+    <pre><span class="lnum">  25:  </span>        {</pre>
+    <pre><span class="lnum">  26:  </span>            get</pre>
+    <pre><span class="lnum">  27:  </span>            {</pre>
+    <pre><span class="lnum">  28:  </span>                <span class="kwrd">return</span> GetFeedCollection(Database.GetDatabase(<span class="str">"master"</span>));</pre>
+    <pre><span class="lnum">  29:  </span>            }</pre>
+    <pre><span class="lnum">  30:  </span>        }</pre>
+    <pre><span class="lnum">  31:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  32:  </span>        <span class="kwrd">private</span> <span class="kwrd">static</span> Item GetItem(Database database)</pre>
+    <pre><span class="lnum">  33:  </span>        {</pre>
+    <pre><span class="lnum">  34:  </span>            Item item = database.GetItem(ID.Parse(<span class="str">"{65163E61-BCA0-4746-817F-FDD475A1C320}"</span>));</pre>
+    <pre><span class="lnum">  35:  </span>            <span class="kwrd">if</span> (item != <span class="kwrd">null</span>)</pre>
+    <pre><span class="lnum">  36:  </span>            {</pre>
+    <pre><span class="lnum">  37:  </span>                <span class="kwrd">return</span> <span class="str">"/sitecore/content/Feeds"</span>.Equals(item.Paths.FullPath)</pre>
+    <pre><span class="lnum">  38:  </span>                    ? item</pre>
+    <pre><span class="lnum">  39:  </span>                    : (database.GetItem(<span class="str">"/sitecore/content/Feeds"</span>) ?? item);</pre>
+    <pre><span class="lnum">  40:  </span>            }</pre>
+    <pre><span class="lnum">  41:  </span>            <span class="kwrd">else</span></pre>
+    <pre><span class="lnum">  42:  </span>            {</pre>
+    <pre><span class="lnum">  43:  </span>                <span class="kwrd">return</span> database.GetItem(<span class="str">"/sitecore/content/Feeds"</span>);</pre>
+    <pre><span class="lnum">  44:  </span>            }</pre>
+    <pre><span class="lnum">  45:  </span>        }</pre>
+    <pre><span class="lnum">  46:  </span>    }</pre>
+    <pre><span class="lnum">  47:  </span>}</pre>
+    </div>
+    <p>This way, you can access the fixed path and get the correct type immediately.</p>
+
+    <p>Sometimes you will know the structure of part of the tree, but that structure can occur in different locations of the content tree. You will want to use relative fixed paths in this situation.</p>
+    <p>The following code is an example of how to hook up a relative fixed path that is always available on items with template 'HomePage' (this could be the setup for a multi-site solution). The code extends the generated partial class for the 'HomePage' template and should be placed in a separate file.</p>
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+    <div class="csharpcode">
+    <pre><span class="lnum">   1:  </span><span class="kwrd">using</span> System;</pre>
+    <pre><span class="lnum">   2:  </span><span class="kwrd">using</span> System.Collections.Generic;</pre>
+    <pre><span class="lnum">   3:  </span><span class="kwrd">using</span> System.Linq;</pre>
+    <pre><span class="lnum">   4:  </span><span class="kwrd">using</span> System.Web;</pre>
+    <pre><span class="lnum">   5:  </span><span class="kwrd">using</span> MyDomainModel.RelativeFixedPaths.Roots.SiteConfig_05D48188D735420988119594A8FFA6A0;</pre>
+    <pre><span class="lnum">   6:  </span>&nbsp;</pre>
+    <pre><span class="lnum">   7:  </span><span class="kwrd">namespace</span> MyDomainModel</pre>
+    <pre><span class="lnum">   8:  </span>{</pre>
+    <pre><span class="lnum">   9:  </span>    <span class="kwrd">public</span> <span class="kwrd">partial</span> <span class="kwrd">class</span> HomePage</pre>
+    <pre><span class="lnum">  10:  </span>    {</pre>
+    <pre><span class="lnum">  11:  </span>        <span class="kwrd">public</span> SiteConfigFixed SiteConfig</pre>
+    <pre><span class="lnum">  12:  </span>        {</pre>
+    <pre><span class="lnum">  13:  </span>            get</pre>
+    <pre><span class="lnum">  14:  </span>            {</pre>
+    <pre><span class="lnum">  15:  </span>                <span class="rem">// use syntax like: MyHomePage.SiteConfig.Settings.GlobalSetting.Setting.Text</span></pre>
+    <pre><span class="lnum">  16:  </span>                <span class="kwrd">return</span> <span class="kwrd">new</span> SiteConfigFixed(Item);</pre>
+    <pre><span class="lnum">  17:  </span>            }</pre>
+    <pre><span class="lnum">  18:  </span>        }</pre>
+    <pre><span class="lnum">  19:  </span>&nbsp;</pre>
+    <pre><span class="lnum">  20:  </span>    }</pre>
+    <pre><span class="lnum">  21:  </span>}</pre>
+    </div>
+
+
+    <h2><a name="chapter5">Validating the domain model at runtime</a></h2>
+
+    <p>In both development and production environments, you will always need to ensure that the domain model is consistent with the templates in the database. That's why the validator is an essential tool. You can open it from the Sitecore menu > "Development Tools" > "CompiledDomainModel Validator".</p>
+    <div><img src="Images/screenshot_validator_consistent.png" alt="screenshot" /></div>
+    <p>If the model is inconsistent with the database, then a list of detailed error and warning messages is displayed.</p>
+    <div><img src="Images/screenshot_validator_inconsistent.png" alt="screenshot" /></div>
+    <p>The error messages must be addressed immediately, because they are issues that can compromise the behavior of your application. Warning messages are less important and usually do not damage the behavior, but they are still inconsistencies that should be resolved.</p>
+    <p>In addition to the validator application, the validation can also be executed on initialization of the application (enabled by default). Any error messages resulting from this will be written to the Sitecore log.</p>
+
+    <p>If you want to add custom validations, like checking for very specific runtime preconditions, you can extend the ValidateDomainModel pipeline (check the CompiledDomainModel.config file). Your errors and warnings will be displayed in the validator (and added to the log during Sitecore initialization).</p>
+
+    <h2><a name="chapter6">Reports</a></h2>
+    <p>Reports in the CompiledDomainModel are helpful pages that provide quick insight into the structure of the currently loaded domain model. They can also be useful for technical documentation. You can find links to reports at the bottom of the validation application within Sitecore.</p>
+    <p>The "Structure for loaded domain model" page displays a quick overview of the hierarchy of your domain model and the fields that reference fields in the Sitecore databases.</p>
+    <div><img src="Images/screenshot_report_domainobjects.png" alt="screenshot" /></div>
+    <p>The "Fixed paths overview" displays what fixed paths have been included in the generated code (for each Sitecore database). The locations where domain objects are directly accessible (because they have matching templates) are marked with the domain object's class name.</p>
+    <div><img src="Images/screenshot_report_fixedpaths.png" alt="screenshot" /></div>
+    <h2><a name="chapter7">Running the FeedReader demo application</a></h2>
+    <p>A separate package is available for the FeedReader demo application. Make sure that the correct version of the CompiledDomainModel application is installed and then install the FeedReader demo application package. You can also get the source for this package, so that you can get a good idea of how to work with the CompiledDomainModel module. This simple example does not account for publishing, so please run it on a single database only (master).</p>
+    <p>The demo application is a simple RSS reader that can be used to download feeds into Sitecore. You can also add short comments to the items in the feeds.</p>
+    <p>Please not that it is a demo application; if you would like to use this functionality in production, you may need to address things like publishing, security, layout, style, etc.</p>
+    <h2><a name="chapter8">Release notes</a></h2>
+    <p>Release 0.3.1.0 (initial release) containing the following features:</p>
+    <ul>
+        <li>
+            A code generator Sitecore application
+            <ol>
+                <li>Different code generation templates can be selected</li>
+                <li>A button for copying the generated code to the clipboard</li>
+                <li>A button for reloading</li>
+                <li>A button for downloading the generated file</li>
+                <li>A link to the module documentation</li>
+                <li>The default template generates a domain model</li>
+                <li>There is a template that generates a SQL script for creating template specific views (Sitecore fields as columns)</li>
+                <li>Easy to extend by placing .ascx files for generating code in the '/sitecore modules/Shell/CompiledDomainModel/CustomGenerators' folder</li>
+            </ol>
+        </li>
+        <li>
+            A validator Sitecore application
+            <ol>
+                <li>Uses the ValidateDomainModel pipeline to check if the loaded domain model is consistent with the templates and fixed paths in the Sitecore databases</li>
+                <li>A button for reloading</li>
+                <li>A link to the module documentation</li>
+                <li>Displays any errors and warnings if applicable</li>
+                <li>A link to a report that gives a quick overview of the structure for the loaded domain model</li>
+                <li>A link to a report that displays all the fixed paths for each database and shows what domain classes can be used at specific locations</li>
+            </ol>
+        </li>
+        <li>
+            A template for generating the domain model
+            <ol>
+                <li>The generated code has a wrapper class with several methods for navigating and creating typed wrapper classes</li>
+                <li>The generated code implements INotifyPropertyChanging and INotifyPropertyChanged so that events can be fired if anything changes in the domain model</li>
+                <li>The generated code contains classes for configured templates and implements properties for the fields of those templates</li>
+                <li>The generated code contains interfaces and static classes for contributing templates, as a way of dealing with Sitecore multiple inheritance (regular domain model classes implement these interfaces)</li>
+                <li>The generated code contains a class for each fixed path in the content tree (and has methods for accessing the item wrappers, typed if possible)</li>
+            </ol>
+        </li>
+        <li>
+            A template for generating SQL views
+            <ol>
+                <li>Creates or replaces a schema to contain the views</li>
+                <li>Creates a view for each configured template and each configured contributing template, using the field names as columns</li>
+            </ol>
+        </li>
+        <li>
+            A validation processor that is configured to call the ValidateDomainModel pipeline at startup and log the result (and throw an exception if configured that way)
+        </li>
+        <li>
+            A validation pipeline that checks if the loaded domain model is consistent with the templates and fixed paths in the Sitecore databases
+            <ol>
+                <li>The validation result is stored in the cache, so that any future code can check the results at a later stage</li>
+                <li>A validation error is added if the domain model is generated with a version of the CompiledDomainModel module that is different from the one that is loaded</li>
+                <li>A validation warning is added if a domain model cannot be found</li>
+                <li>A validation error is added for each template that is referenced from the loaded domain model, but is not present in the configured databases</li>
+                <li>A validation error is added for each template if the inheritance of the domain model is inconsistent with the inheritance of the templates in the configured databases</li>
+                <li>A validation error is added for each template field that is referenced from the loaded domain model, but is not present in the configured databases</li>
+                <li>A validation error is added for each template field that is referenced from the loaded domain model, but has a different type in the configured databases</li>
+                <li>A validation warning is added for each template that is configured to have generated code, but the domain model does not contain a class for it</li>
+                <li>A validation warning is added for each template field of templates in the loaded domain model that don't have generated code</li>
+                <li>A validation warning is added for each fixed template path that is configured, but has no generated code</li>
+                <li>A validation error is added if no databases are configured for a fixed path in the loaded domain model</li>
+                <li>A validation error is added if a fixed path is not available in a configured database</li>
+                <li>A validation warning is added if a fixed path is available in a configured database at the configured path, but if it does not have the correct item ID</li>
+                <li>A validation warning is added if a fixed path is available in a configured database with the correct ID, but if it is not at the right path in Sitecore</li>
+            </ol>
+        </li>
+    </ul>
+    <p>Release 0.4.0.0 containing the following features:</p>
+    <ul>
+        <li>
+            Some fixes
+            <ol>
+                <li>Possible nullreference exception in generated code prevented (ItemWrapper.Parent)</li>
+                <li>Exception after generating code prevented when nothing is configured</li>
+                <li>Databinding issue fixed that caused error messages not to be displayed after generating code</li>
+            </ol>
+        </li>
+        <li>
+            Fieldtype support added for
+            <ol>
+                <li>ReferenceField</li>
+                <li>LookupField</li>
+                <li>Numeric fields (long)</li>
+                <li>Decimal fields (double)</li>
+                <li>Improved support for LinkFields</li>
+            </ol>
+        </li>
+        <li>
+            Generation template added for making a typed WCF Service to be consumed by other applications such as Silverlight (experimental)
+            <ol>
+                <li>Includes a demo Silverlight application</li>
+            </ol>
+        </li>
+        <li>
+            The user who generated the domain model is mentioned in the comments of the generated code
+        </li>
+    </ul>
+    <p>Release 0.5.0.0 containing the following features:</p>
+    <ul>
+        <li>
+            Added support for relative fixed paths. So you can use a similar syntax as with fixed paths for paths within the content tree that have a fixed structure, but can be available in different locations.
+        </li>
+        <li>
+            The names of the DomainObjectSets are now included in the namespaces of the generated code. This allows for a better separation of projects/sites.
+        </li>
+        <li>
+            Items are now created by matching them by Sitecore ID, instead of template name
+        </li>
+        <li>
+            Some members made virtual
+        </li>
+        <li>
+            Compatibility with automatic databinding by turning it off during code generation
+        </li>
+        <li>
+            Fieldtype support added for
+            <ol>
+                <li>ImageField</li>
+                <li>FileField</li>
+            </ol>
+        </li>
+        <li>
+            Generated code no longer uses XPath to get the descendants of a specific type; uses a 'safer' way now
+        </li>
+        <li>
+            Added a GutterRenderer that displays the fixed paths and configured templates in the bar next to the content tree (<a href="http://hermanussen.eu/sitecore/wordpress/2011/03/the-sitecore-gutter/">more info</a>)
+        </li>
+        <li>
+            Generated code now starts with a prefix that can be used by external tools (like <a href="http://hermanussen.eu/sitecore/wordpress/2011/04/update-compileddomainmodel-from-visual-studio/">this one</a>) to refresh the generated code.
+        </li>
+    </ul>
+    <p>Release 0.5.5.0 containing the following features:</p>
+    <ul>
+        <li>
+            Added "FromParent(...)" static method to create relative fixed paths by resolving the child item by itself
+        </li>
+        <li>
+            Added the option to the global settings to remove dependencies with the CDM module
+        </li>
+        <li>
+            Added IItemWrapperCore, to allow dependencies with generated code to be removed.
+        </li>
+        <li>
+            Better way of determining template and contributing template hierarchy.
+        </li>
+        <li>
+            Fixed a bug that deals with a rather exotic NullReferenceException in the ConfigurationUtil class.
+        </li>
+    </ul>
+    <h2><a name="chapter9">Contact the author</a></h2>
+    <p>This module was created by Robin Hermanussen. For questions, remarks, contributions or anything else related to this module, you can contact him by E-mail: <img src="Images/author_mail.png" alt="Mail is obfuscated for crawlers" style="position: relative; top: 6px;" /> (mail is obfuscated for crawlers).</p>
+</body>
+</html>
