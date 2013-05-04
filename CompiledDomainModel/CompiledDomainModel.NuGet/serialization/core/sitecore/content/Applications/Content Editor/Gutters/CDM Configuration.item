@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {26221F8E-C87B-4D7E-B852-2CCA3C9AAD2D}
+database: core
+path: /sitecore/content/Applications/Content Editor/Gutters/CDM Configuration
+parent: {59F37069-3118-4151-8C01-5DA0EF12CB4E}
+name: CDM Configuration
+master: {00000000-0000-0000-0000-000000000000}
+template: {F5D247E0-80E6-4F31-9921-D30D00B61B3C}
+templatekey: Gutter Renderer
+
+----field----
+field: {7A108204-DC61-4D25-A138-FD6F53F48ABF}
+name: Type
+key: type
+content-length: 52
+
+CompiledDomainModel.GutterRenderers.CdmConfiguration
+----version----
+language: en
+version: 1
+revision: ca84dec6-2c5a-4281-95d9-4700cc5f1202
+
+----field----
+field: {5024402F-0B92-4C13-A7D2-86ED85FF3560}
+name: Header
+key: header
+content-length: 17
+
+CDM Configuration
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20110329T203400
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+ca84dec6-2c5a-4281-95d9-4700cc5f1202
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20110329T203543:634370277438663594
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Diagram.ascx.cs" Inherits="CompiledDomainModel.sitecore_modules.Shell.CompiledDomainModel.Reports.Diagram" %>

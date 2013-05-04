@@ -1,6 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4F3A288-3078-443D-B82F-FB3ED2DB6509}"
+	ProjectSection(SolutionItems) = preProject
+		CompiledDomainModel.vsmdi = CompiledDomainModel.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompiledDomainModel", "CompiledDomainModel\CompiledDomainModel.csproj", "{438805A5-EE12-43FD-8F11-8C55F8E0B3A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompiledDomainModel.Demo.FeedReader", "CompiledDomainModel.Demo.FeedReader\CompiledDomainModel.Demo.FeedReader.csproj", "{90093ACE-5CB7-4186-96FD-B4CAE84F7B62}"
@@ -8,13 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompiledDomainModel.Demo.SLFeedReader", "CompiledDomainModel.Demo.SLFeedReader\CompiledDomainModel.Demo.SLFeedReader.csproj", "{69DE71E9-81FE-4D8B-9423-DD468C7EC93D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompiledDomainModel.Tests", "CompiledDomainModel.Tests\CompiledDomainModel.Tests.csproj", "{1D51CF07-6CBB-4285-954A-D6AD15A59000}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4F3A288-3078-443D-B82F-FB3ED2DB6509}"
-	ProjectSection(SolutionItems) = preProject
-		CompiledDomainModel.vsmdi = CompiledDomainModel.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

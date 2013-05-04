@@ -23,6 +23,7 @@ using Sitecore.Data.Items;
 using CompiledDomainModel.Utils;
 using Sitecore.Data.Fields;
 using Sitecore.Diagnostics;
+using Sitecore.Web;
 
 namespace CompiledDomainModel.Dom
 {
@@ -63,6 +64,22 @@ namespace CompiledDomainModel.Dom
 
         public bool RemoveDependencies { get; private set; }
 
+        public bool PlatformMode { get; private set; }
+
+        private IEnumerable<string> PlatformSets
+        {
+            get
+            {
+                return WebUtil.GetQueryString("platformsets", string.Empty)
+                              .Split(new[] {'|'}, StringSplitOptions.RemoveEmptyEntries);
+            }
+        }
+
+        public bool MustRenderPlatformSet(string platformSetName)
+        {
+            return PlatformSets.Any(s => s.Equals(platformSetName, StringComparison.InvariantCultureIgnoreCase));
+        }
+
         private Item SettingsItem { get; set; }
 
         public DomainModelSettings()
@@ -72,6 +89,10 @@ namespace CompiledDomainModel.Dom
             CheckboxField removeDependenciesField = FieldTypeManager.GetField(SettingsItem.Fields["Remove dependencies"]) as CheckboxField;
             Assert.IsNotNull(removeDependenciesField, "The field 'Remove dependencies' cannot be found on the CDM settings item");
             RemoveDependencies = removeDependenciesField.Checked;
+
+            CheckboxField platformModeField = FieldTypeManager.GetField(SettingsItem.Fields["Platform mode"]) as CheckboxField;
+            Assert.IsNotNull(platformModeField, "The field 'Platform mode' cannot be found on the CDM settings item");
+            PlatformMode = platformModeField.Checked;
 
             Item[] domainObjectSetItems = SettingsItem.Axes.SelectItems(string.Format("*[@@TemplateName='DomainObjectSet']"));
             DomainObjectSets = domainObjectSetItems != null
@@ -116,6 +137,19 @@ namespace CompiledDomainModel.Dom
                         }
                     }
                     index++;
+                }
+            }
+
+            // Filter out sets that should not be rendered when in platform mode
+            if (PlatformMode && ! string.IsNullOrEmpty(WebUtil.GetQueryString("platformsets")))
+            {
+                if (DomainObjectSets != null)
+                {
+                    DomainObjectSets = DomainObjectSets.Where(s => MustRenderPlatformSet(s.Name));
+                }
+                if (FixedPathSets != null)
+                {
+                    FixedPathSets = FixedPathSets.Where(s => MustRenderPlatformSet(s.Name)).ToList();
                 }
             }
         }

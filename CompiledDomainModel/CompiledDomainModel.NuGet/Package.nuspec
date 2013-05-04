@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CompiledDomainModel</id>
+    <version>1.0.0.0</version>
+    <authors>Robin Hermanussen</authors>
+    <owners>Robin Hermanussen</owners>
+    <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
+    <projectUrl>http://marketplace.sitecore.net/en/Modules/Compiled_Domain_Model.aspx</projectUrl>
+    <iconUrl>http://hermanussen.eu/sitecore/CompiledDomainModel/cdm.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Compiled Domain Model module helps you create domain model classes based on your Sitecore templates and is capable of validating the model with Sitecore data at any given moment.</description>
+    <releaseNotes>- Added Platform Mode</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Sitecore Code Generator Validator CompiledDomainModel Cdm</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>

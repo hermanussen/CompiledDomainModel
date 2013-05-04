@@ -32,15 +32,17 @@ namespace CompiledDomainModel.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class DomainObjectAttribute : Attribute
     {
-        private ID TemplateId { get; set; }
+        public ID TemplateId { get; private set; }
         public string TemplateName { get; private set; }
         private string[] DatabaseNames { get; set; }
+        public bool IsContributing { get; private set; }
 
-        public DomainObjectAttribute(string templateId, string templateName, string[] databaseNames)
+        public DomainObjectAttribute(string templateId, string templateName, string[] databaseNames, bool isContributing = false)
         {
             TemplateId = ID.Parse(templateId);
             TemplateName = templateName;
             DatabaseNames = databaseNames;
+            IsContributing = isContributing;
         }
 
         public IEnumerable<string> Validate(Type type, List<DomainObjectFieldAttribute> attributesList)

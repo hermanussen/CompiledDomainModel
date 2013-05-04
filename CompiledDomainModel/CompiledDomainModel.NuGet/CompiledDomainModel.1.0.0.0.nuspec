@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>CompiledDomainModel</id>
+        <version>1.0.0.0</version>
+        <title>CompiledDomainModel for Sitecore</title>
+        <authors>Robin Hermanussen</authors>
+        <owners>Robin Hermanussen</owners>
+        <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
+        <projectUrl>http://marketplace.sitecore.net/en/Modules/Compiled_Domain_Model.aspx</projectUrl>
+        <iconUrl>http://hermanussen.eu/sitecore/CompiledDomainModel/cdm.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>The Compiled Domain Model module helps you create domain model classes based on your Sitecore templates and is capable of validating the model with Sitecore data at any given moment.</description>
+        <releaseNotes>- Added Platform Mode
+- Created NuGet package</releaseNotes>
+        <copyright>Copyright 2010 - 2013</copyright>
+        <tags>Sitecore Code Generator Validator CompiledDomainModel Cdm</tags>
+    </metadata>
+    <files>
+        <file src="content\CompiledDomainModel-1.0.0.0.zip" target="content\CompiledDomainModel-1.0.0.0.zip" />
+        <file src="serialization\core\sitecore\content\Applications\CompiledDomainModel\CodeGenerator.item" target="serialization\core\sitecore\content\Applications\CompiledDomainModel\CodeGenerator.item" />
+        <file src="serialization\core\sitecore\content\Applications\CompiledDomainModel\Validator.item" target="serialization\core\sitecore\content\Applications\CompiledDomainModel\Validator.item" />
+        <file src="serialization\core\sitecore\content\Applications\Content Editor\Gutters\CDM Configuration.item" target="serialization\core\sitecore\content\Applications\Content Editor\Gutters\CDM Configuration.item" />
+        <file src="serialization\core\sitecore\content\Applications\CompiledDomainModel.item" target="serialization\core\sitecore\content\Applications\CompiledDomainModel.item" />
+        <file src="serialization\core\sitecore\content\Documents and settings\All users\Start menu\Right\Development Tools\CompiledDomainModel Code Generator.item" target="serialization\core\sitecore\content\Documents and settings\All users\Start menu\Right\Development Tools\CompiledDomainModel Code Generator.item" />
+        <file src="serialization\core\sitecore\content\Documents and settings\All users\Start menu\Right\Development Tools\CompiledDomainModel Validator.item" target="serialization\core\sitecore\content\Documents and settings\All users\Start menu\Right\Development Tools\CompiledDomainModel Validator.item" />
+        <file src="serialization\core\sitecore\layout\Layouts\CompiledDomainModel\CodeGenerator.item" target="serialization\core\sitecore\layout\Layouts\CompiledDomainModel\CodeGenerator.item" />
+        <file src="serialization\core\sitecore\layout\Layouts\CompiledDomainModel\Validator.item" target="serialization\core\sitecore\layout\Layouts\CompiledDomainModel\Validator.item" />
+        <file src="serialization\core\sitecore\layout\Layouts\CompiledDomainModel.item" target="serialization\core\sitecore\layout\Layouts\CompiledDomainModel.item" />
+        <file src="serialization\master\sitecore\system\Modules\CompiledDomainModel\Settings.item" target="serialization\master\sitecore\system\Modules\CompiledDomainModel\Settings.item" />
+        <file src="serialization\master\sitecore\system\Modules\CompiledDomainModel.item" target="serialization\master\sitecore\system\Modules\CompiledDomainModel.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet\Set properties\Validate in databases.item" target="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet\Set properties\Validate in databases.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet\Set properties.item" target="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet\Set properties.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set\Templates that contribute to Domain Model.item" target="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set\Templates that contribute to Domain Model.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set\Templates to map to Domain Model.item" target="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set\Templates to map to Domain Model.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set.item" target="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\Domain object set.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\__Standard Values.item" target="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet\__Standard Values.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set\Fixed tree locations.item" target="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set\Fixed tree locations.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set\Relative fixed tree locations.item" target="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set\Relative fixed tree locations.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set.item" target="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\Fixed path set.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\__Standard Values.item" target="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet\__Standard Values.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Enable validation on startup.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Enable validation on startup.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Namespace.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Namespace.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Platform mode.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Platform mode.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Remove dependencies.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Remove dependencies.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Throw exception on startup validation failed.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings\Throw exception on startup validation failed.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\Global settings.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings\__Standard Values.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings\__Standard Values.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet.item" target="serialization\master\sitecore\templates\CompiledDomainModel\BaseSet.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet.item" target="serialization\master\sitecore\templates\CompiledDomainModel\DomainObjectSet.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet.item" target="serialization\master\sitecore\templates\CompiledDomainModel\FixedPathSet.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel\Settings.item" target="serialization\master\sitecore\templates\CompiledDomainModel\Settings.item" />
+        <file src="serialization\master\sitecore\templates\CompiledDomainModel.item" target="serialization\master\sitecore\templates\CompiledDomainModel.item" />
+        <file src="tools\init.ps1" target="tools\init.ps1" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
+        <file src="tools\Sitecore.NuGet.1.0.dll" target="tools\Sitecore.NuGet.1.0.dll" />
+        <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+        <file src="wwwroot\bin\CompiledDomainModel.dll" target="wwwroot\bin\CompiledDomainModel.dll" />
+        <file src="wwwroot\bin\CompiledDomainModel.pdb" target="wwwroot\bin\CompiledDomainModel.pdb" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\CustomGenerators\SqlViewsGenerator.ascx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\CustomGenerators\SqlViewsGenerator.ascx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\CustomGenerators\WcfServiceGenerator.ascx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\CustomGenerators\WcfServiceGenerator.ascx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\author_mail.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\author_mail.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_all.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_all.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_code_generator.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_code_generator.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_domainobjectset.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_domainobjectset.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_fixedpathset.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_fixedpathset.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_menu.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_menu.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_domainobjects.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_domainobjects.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_fixedpaths.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_report_fixedpaths.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_settings.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_settings.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_silverlight_feedreader.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_silverlight_feedreader.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_consistent.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_consistent.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_inconsistent.png" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\Images\screenshot_validator_inconsistent.png" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\default.htm" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Documentation\default.htm" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\Diagram.ascx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\DomainObjectsDiagram.aspx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPaths.ascx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Reports\FixedPathsDiagram.aspx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\CodeGenerator.aspx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\DomainModelGenerator.ascx.designer.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx.cs" />
+        <file src="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx.designer.cs" target="wwwroot\sitecore modules\Shell\CompiledDomainModel\Validator.aspx.designer.cs" />
+    </files>
+</package>
